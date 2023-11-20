@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Adventskalender</title>
+</head>
+<body>
+  <h1>Adventskalender-Demo</h1>
+  <img id="Adventskalender" src="assets/46_night.png" alt="Adventskalender">
+</body>
+<script>
+  var adventskalender = document.getElementById("Adventskalender");
+  var radius = 0.05;
+
+  // Coordinates of the doors. The coordinates are relative to the image size, i.e. in [0, 1]
+  var doors = [[0.6, 0.51], [0.41, 0.67], [0.92, 0.62], [0.18, 0.05], [0.76, 0.7], [0.16, 0.72], [0.82, 0.06], [0.33, 0.83], [0.15, 0.87], [0.07, 0.52], [0.5, 0.36], [0.72, 0.41], [0.95, 0.74], [0.15, 0.39], [0.64, 0.25], [0.68, 0.92], [0.27, 0.17], [0.56, 0.86], [0.31, 0.34], [0.27, 0.61], [0.14, 0.18], [0.81, 0.28], [0.44, 0.14], [0.56, 0.07]];
+
+  var MousePos = [];
+
+  adventskalender.addEventListener("mousemove", handleMouseMove);
+  adventskalender.addEventListener("click", handleClick);
+
+  /**
+   * Computes the relative coordinates of the mouse inside the image. Both coordinates are in [0, 1]
+   */
+  function getMousePos(e){
+    const x = e.offsetX / e.target.width;
+    const y = e.offsetY / e.target.height;
+    return [x, y];
+  }
+
+  /**
+   * Checks whether a point is close enough to a door to be considered a click on that door.
+   */
+  function pointInCircle(x, y, cx, cy, r) {
+    var squaredDist = (x - cx) * (x - cx) + (y - cy) * (y - cy);
+    return squaredDist <= r * r;
+  }
+
+  /**
+   * Checks whether the mouse is over a door. If so, returns the ID of the door. Otherwise, returns 0.
+   */
+  function findDoor(MousePos) {
+    for(i = 0; i < doors.length; i++) {
+      var door = doors[i];
+      if(pointInCircle(MousePos[0], MousePos[1], door[0], door[1], radius)) {
+        return i + 1;
+      }
+    }
+    return null;
+  }
+
+  /**
+   * Opens the door with the given ID
+   */
+  function openDoor(doorID){
+    window.alert("Tür " + doorID + " wurde geöffnet!");
+  }
+
+  /**
+   * Handles the click event on the image. If the click is on a door, the door is opened.
+   */
+  function handleClick(e) {
+    MousePos = getMousePos(e);
+    var clickGoal = findDoor(MousePos);
+    if(clickGoal > 0) {
+      openDoor(clickGoal);
+    }
+  }
+
+  /**
+   * Changes the style of the cursor depending on whether the mouse is over a door or not
+   */
+  function handleMouseMove(e) {
+    mousePos = getMousePos(e);
+    if(findDoor(mousePos) > 0) {
+      adventskalender.style.cursor = "pointer";
+    } else {
+      adventskalender.style.cursor = "default";
+    }
+  }
+</script>
+<style>
+  body {
+    background-color: #e1e1e1;
+    color: #b36464;
+    text-align: center;
+  }
+
+  img {
+    border-radius: 10px;
+    width: auto;
+  }
+</style>
+</html>
