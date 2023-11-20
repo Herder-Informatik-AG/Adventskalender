@@ -1,15 +1,28 @@
 <!DOCTYPE html>
-<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Adventskalender</title>
+    <title>Adventskalender - DEMO</title>
 </head>
-<body>
-  <h1>Adventskalender-Demo</h1>
-  <img id="Adventskalender" src="assets/46_night.png" alt="Adventskalender">
-</body>
+<div class="root">
+  <div class="width-large">
+    <div class="row">
+      <div class="col-12 ce_image first block no-margin" id="adventskalender">
+        <div class="inner">
+          <figure class="image-container">
+            <div class="image-mask">
+              <img src="assets/46_night.png" width="800" height="564" alt="" itemprop="image" style="cursor: default;">
+            </div>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COPY EVERYTHING BELOW THIS INTO "ce_html5-Adventskalender" -->
+
 <script>
-  var adventskalender = document.getElementById("Adventskalender");
+  var adventskalender = document.querySelector('#adventskalender img');
   var radius = 0.05;
 
   // Coordinates of the doors. The coordinates are relative to the image size, i.e. in [0, 1]
@@ -81,15 +94,8 @@
   }
 </script>
 <style>
-  body {
-    background-color: #e1e1e1;
-    color: #b36464;
-    text-align: center;
-  }
-
-  img {
+  #adventskalender img {
     border-radius: 10px;
     width: auto;
   }
 </style>
-</html>
