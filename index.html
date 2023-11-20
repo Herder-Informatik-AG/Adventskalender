@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
-    <meta charset="UTF-8">
-    <title>Adventskalender - DEMO</title>
+  <meta charset="UTF-8">
+  <title>Adventskalender - DEMO</title>
 </head>
 <div class="root">
   <div class="width-large">
@@ -10,7 +10,7 @@
         <div class="inner">
           <figure class="image-container">
             <div class="image-mask">
-              <img src="assets/46_night.png" width="800" height="564" alt="" itemprop="image" style="cursor: default;">
+              <img src="assets/46_night.png" width="800" height="564" alt="" itemprop="image">
             </div>
           </figure>
         </div>
@@ -67,7 +67,20 @@
    * Opens the door with the given ID
    */
   function openDoor(doorID){
+    if (!canBeOpened(doorID)) {
+      window.alert("Tür " + doorID + " kann noch nicht geöffnet werden! Bitte warte bis zum " + doorID + ". Dezember.");
+      return;
+    }
     window.alert("Tür " + doorID + " wurde geöffnet!");
+  }
+
+  /**
+   * Checks whether the door can be opened based on day of the month.
+   */
+  function canBeOpened(doorID) {
+    var today = new Date();
+    var day = today.getDate();
+    return doorID <= day;
   }
 
   /**
@@ -87,7 +100,11 @@
   function handleMouseMove(e) {
     mousePos = getMousePos(e);
     if(findDoor(mousePos) > 0) {
-      adventskalender.style.cursor = "pointer";
+      if (canBeOpened(findDoor(mousePos))) {
+        adventskalender.style.cursor = "pointer";
+      } else {
+        adventskalender.style.cursor = "not-allowed";
+      }
     } else {
       adventskalender.style.cursor = "default";
     }
