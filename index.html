@@ -153,6 +153,7 @@
   function handleMouseMove(e) {
     mousePos = getMousePos(e);
     if(findDoor(mousePos) > 0) {
+      adventskalender.title = "Tür " + findDoor(mousePos);
       if (canBeOpened(findDoor(mousePos))) {
         adventskalender.style.cursor = "pointer";
       } else {
