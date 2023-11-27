@@ -3,18 +3,16 @@
   <meta charset="UTF-8">
   <title>Advent Calender</title>
 </head>
-<div class="root">
+<body>
   <div id="adventcalender">
-    <figure class="image-container">
-      <img src="https://www.herder-oberschule.de/files/Adventskalender-Bild.jpg" width="800" height="564" alt="" itemprop="image">
-    </figure>
+    <img src="https://www.herder-oberschule.de/files/Adventskalender-Bild.jpg" alt="" itemprop="image">
   </div>
   <!-- <div id="debug">
     <p>Mouse position: <span id="mousePos"></span></p>
     <p>Last click position: <span id="clickPos"></span></p>
     <p>Current radius: <span id="radius"></span></p>
   </div> -->
-</div>
+</body>
 
 <!-- <script>
   var lastClick = [0, 0];
@@ -157,9 +155,16 @@
   }
 </script>
 <style>
+  body {
+    margin: 0;
+    overflow: hidden;
+  }
+  #adventcalender {
+    position: relative;
+    display: inline-block;
+  }
   #adventcalender img {
-    border-radius: 10px;
-    width: auto;
-    max-height: max-content;
+    max-width: 100%;
+    max-height: 100vh;
   }
 </style>
