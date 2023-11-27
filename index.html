@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
-  <title>Adventskalender - DEMO</title>
+  <title>Advent Calender</title>
 </head>
 <div class="root">
   <div class="width-large">
     <div class="row">
-      <div class="col-12 ce_image first block no-margin" id="adventskalender">
+      <div class="col-12 ce_image first block no-margin" id="adventcalender">
         <div class="inner">
           <figure class="image-container">
             <div class="image-mask">
-              <img src="assets/46_night.png" width="800" height="564" alt="" itemprop="image">
+              <img src="https://www.herder-oberschule.de/files/Adventskalender-Bild.jpg" width="800" height="564" alt="" itemprop="image">
             </div>
           </figure>
         </div>
       </div>
     </div>
   </div>
-  <div id="debug">
+  <!-- <div id="debug">
     <p>Mouse position: <span id="mousePos"></span></p>
     <p>Last click position: <span id="clickPos"></span></p>
     <p>Current radius: <span id="radius"></span></p>
-  </div>
+  </div> -->
 </div>
 
-<script>
+<!-- <script>
   var lastClick = [0, 0];
-  adventskalender.addEventListener("mousemove", updateDebug);
-  adventskalender.addEventListener("click", updateDebugClick);
+  adventcalender.addEventListener("mousemove", updateDebug);
+  adventcalender.addEventListener("click", updateDebugClick);
   
   /**
    * Updates the debug information
@@ -44,46 +44,46 @@
     lastClick = mousePos;
     updateDebug();
   }
-</script>
+</script> -->
 
-<!-- COPY EVERYTHING BELOW THIS INTO "ce_html5-Adventskalender" -->
+<!-- COPY EVERYTHING BELOW THIS-->
 
 <script>
-  var adventskalender = document.querySelector('#adventskalender img');
+  var adventcalender = document.querySelector('#adventcalender img');
   var radius = 0.05;
 
   // Coordinates of the doors. The coordinates are relative to the image size, i.e. in [0, 1]
   var doors = [
-    [0.6, 0.51], // 1
-    [0.41, 0.67], // 2
-    [0.92, 0.62], // 3
-    [0.18, 0.05], // 4
-    [0.76, 0.7], // 5
-    [0.16, 0.72], // 6
-    [0.82, 0.06], // 7
-    [0.33, 0.83], // 8
-    [0.15, 0.87], // 9
-    [0.07, 0.52], // 10
-    [0.5, 0.36], // 11
-    [0.72, 0.41], // 12
-    [0.95, 0.74], // 13
-    [0.15, 0.39], // 14
-    [0.64, 0.25], // 15
-    [0.68, 0.92], // 16
-    [0.27, 0.17], // 17
-    [0.56, 0.86], // 18
-    [0.31, 0.34], // 19
-    [0.27, 0.61], // 20
-    [0.14, 0.18], // 21
-    [0.81, 0.28], // 22
-    [0.44, 0.14], // 23
-    [0.56, 0.07] // 24
+    [0.43, 0.59], // 1
+    [0.22, 0.28], // 2
+    [0.92, 0.65], // 3
+    [0.67, 0.13], // 4
+    [0.56, 0.92], // 5
+    [0.9, 0.09], // 6
+    [0.88, 0.46], // 7
+    [0.23, 0.62], // 8
+    [0.54, 0.21], // 9
+    [0.08, 0.10], // 10
+    [0.55, 0.46], // 11
+    [0.43, 0.25], // 12
+    [0.14, 0.91], // 13
+    [0.35, 0.71], // 14
+    [0.07, 0.64], // 15
+    [0.12, 0.46], // 16
+    [0.93, 0.37], // 17
+    [0.47, 0.74], // 18
+    [0.61, 0.62], // 19
+    [0.31, 0.09], // 20
+    [0.34, 0.42], // 21
+    [0.40, 0.91], // 22
+    [0.06, 0.29], // 23
+    [0.69, 0.35] // 24
   ];
 
   var MousePos = [];
 
-  adventskalender.addEventListener("mousemove", handleMouseMove);
-  adventskalender.addEventListener("click", handleClick);
+  adventcalender.addEventListener("mousemove", handleMouseMove);
+  adventcalender.addEventListener("click", handleClick);
 
   /**
    * Computes the relative coordinates of the mouse inside the image. Both coordinates are in [0, 1]
@@ -120,11 +120,11 @@
    */
   function openDoor(doorID){
     if (!canBeOpened(doorID)) {
-      window.alert("Tür " + doorID + " kann noch nicht geöffnet werden! Bitte warte bis zum " + doorID + ". Dezember.");
+      window.alert("Door " + doorID + " cannot be opened yet!");
       return;
     }
     // Direct the user to the path of the door
-    window.location.href = "/adventskalender-" + doorID;
+    window.location.href = "https://www.herder-oberschule.de/adventskalender-" + doorID;
   }
 
   /**
@@ -153,19 +153,19 @@
   function handleMouseMove(e) {
     mousePos = getMousePos(e);
     if(findDoor(mousePos) > 0) {
-      adventskalender.title = "Tür " + findDoor(mousePos);
+      adventcalender.title = "Door " + findDoor(mousePos);
       if (canBeOpened(findDoor(mousePos))) {
-        adventskalender.style.cursor = "pointer";
+        adventcalender.style.cursor = "pointer";
       } else {
-        adventskalender.style.cursor = "not-allowed";
+        adventcalender.style.cursor = "not-allowed";
       }
     } else {
-      adventskalender.style.cursor = "default";
+      adventcalender.style.cursor = "default";
     }
   }
 </script>
 <style>
-  #adventskalender img {
+  #adventcalender img {
     border-radius: 10px;
     width: auto;
     max-height: max-content;
