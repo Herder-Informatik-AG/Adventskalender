@@ -114,7 +114,8 @@
       return;
     }
     // Direct the user to the path of the door
-    window.location.href = "https://www.herder-oberschule.de/adventskalender-" + doorID;
+    const url = "https://www.herder-oberschule.de/adventskalender-" + doorID;
+    window.open(url, "_blank");
   }
 
   /**
