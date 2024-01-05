@@ -70,6 +70,33 @@
     [0.69, 0.35] // 24
   ];
 
+  var urls = [
+    "https://youtu.be/A44PHbQNUjo?si=HxAbIZEH9mdR72y6", // 1
+    "https://youtu.be/hUnt3Ris0rQ?si=PN7JYEUCujJeGXT2",
+    "https://youtu.be/o3Um82rYi_c?si=kn19lsMe87aGQURd",
+    "https://youtu.be/xGmpE5DrpOE?si=udPbLZFchHFTULuE",
+    "https://youtu.be/bWFQP4y7RKo?si=GdWRA8PfF6IGkyzP", // 5
+    "https://youtu.be/-dgVfYrxajs?si=Ll8Zf6WsZbCY8127",
+    "https://www.youtube.com/watch?v=geQT_de1zTQ",
+    "https://www.youtube.com/watch?v=k5nWwxNzOfA",
+    "https://youtu.be/LdMu1BTSTGw?si=sZOM5hyAFgV6nGtk",
+    "https://youtu.be/qVlxf2B7LSk?si=NJTrVFnq1eTgUCRm", // 10
+    "https://youtu.be/AvUlL0L9Arg?si=PZbGU5m5FiTxYHG9",
+    "https://youtu.be/dUXdYgzdj2U?si=9bEnLhYTykFF_8ej",
+    "https://youtu.be/NwgL7oHcTS0?si=aQsFF_evseHK_g8m",
+    "https://youtu.be/NCfz53NJWD8?si=UYEcmn8oN8619C4O",
+    "https://youtu.be/bvaXIVDVPQo?si=ph5fsXwAkQNadQVe", // 15
+    "https://youtu.be/ZK9s8w2y-eM?si=XS-EUqDW6E-717l0",
+    "https://youtu.be/zjObINgqpdc?si=PiFR6yiK5mED5flo",
+    "https://youtu.be/UuZ_GzVrN2o?si=IT7yxKRSMGzk6W5T",
+    "https://youtu.be/YeKWqJdqT3k?si=IiwEbgFR3bSlqrP5",
+    "https://youtu.be/u4g4ubfOC2c?si=pO5tn84z47W6ZEgU", // 20
+    "https://youtu.be/C4-x6CsN38Y?si=h8WPNeNtX0RuKF5p",
+    "https://youtu.be/K8Da47ChtlE?si=XQ-9L8gobof3SZtf",
+    "https://youtu.be/mhS4vAr2Hyg?si=Nk3X634ckghrpKH0",
+    "https://youtu.be/ffMfBtgL03g?si=8ceXpsuvE1cyJqqk",
+  ]
+
   var MousePos = [];
 
   adventcalender.addEventListener("mousemove", handleMouseMove);
@@ -109,12 +136,12 @@
    * Opens the door with the given ID
    */
   function openDoor(doorID){
-    if (!canBeOpened(doorID)) {
+    if (!canBeOpened(doorID)) { // This prevents doors from being opened that shouldn't be opened yet
       // window.alert("Door " + doorID + " cannot be opened yet!");
       return;
     }
     // Direct the user to the path of the door
-    const url = "https://www.herder-oberschule.de/adventskalender-" + doorID;
+    const url = urls[doorID - 1];
     window.open(url, "_blank");
   }
 
@@ -122,6 +149,7 @@
    * Checks whether the door can be opened based on day of the month.
    */
   function canBeOpened(doorID) {
+    return true; // After the event, all doors are available
     var today = new Date();
     var day = today.getDate();
     return day >= doorID;
